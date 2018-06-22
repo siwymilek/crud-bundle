@@ -7,10 +7,17 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
+    private $alias;
+
+    public function __construct($alias)
+    {
+        $this->alias = $alias;
+    }
+
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('core_crud');
+        $rootNode = $treeBuilder->root($this->alias);
 
         $rootNode
             ->children()

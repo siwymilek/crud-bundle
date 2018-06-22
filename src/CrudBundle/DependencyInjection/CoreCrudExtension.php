@@ -14,7 +14,7 @@ class CoreCrudExtension extends Extension {
         $loader = new XmlFileLoader($container, new FileLocator(dirname(__DIR__).'/Resources/config'));
         $loader->load('services.xml');
 
-        $configuration = new Configuration();
+        $configuration = new Configuration($this->getAlias());
         $config = $this->processConfiguration($configuration, $configs);
 
         $resourcesConfig = $config['resources'];
@@ -25,5 +25,10 @@ class CoreCrudExtension extends Extension {
 
         $gridHandlerDefinition = $container->getDefinition('core.crud_bundle.handler.grid');
         $gridHandlerDefinition->replaceArgument(0, $gridsConfig);
+    }
+
+    public function getAlias()
+    {
+        return 'siwymilek_crud';
     }
 }
