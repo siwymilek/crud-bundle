@@ -1,0 +1,45 @@
+crud_bundle:
+    resources:
+        campaign:
+            model: AppBundle\Entity\Campaign\Campaign # instance ResourceModelInterface
+            respository:
+                class: AppBundle\Repository\Campaign\CampaignRepository # instance ResourceRepositoryInterface
+
+    grids:
+        app_campaigns:
+            alias: app.campaign
+            template: Panel/Crud/index.html.twig
+            except: []
+            resource: campaign
+            types:
+                list: ~
+                show: ~
+                create: ~
+                update: ~
+                delete: ~
+        app_votes:
+            alias: app.campaign
+            template: Panel/Crud/index.html.twig
+            except: []
+            resource: campaign
+            types:
+                list:
+                    permissions: ['list']
+                    pagination:
+                        key: page
+                        limit: 10
+                show:
+                    persmissions: ['show']
+                create:
+                    permissions: ['create']
+                    redirect:
+                        type: route
+                        route: test.route
+                        arguments:
+                            id: "expr:service('request_stack').getCurrentRequest().get('id', [])"
+                update:
+                    permissions: ['update']
+                    redirect: update
+                delete:
+                    permissions: ['delete']
+                    redirect: list

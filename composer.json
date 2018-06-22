@@ -1,0 +1,23 @@
+{
+  "name": "siwymilek/crud-bundle",
+  "type": "symfony-bundle",
+  "description": "Siwymilek CrudBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Piotr Miłoszewicz",
+      "email": "pmiloszewicz@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "symfony/dependency-injection": "~2.8|~3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Siwymilek\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

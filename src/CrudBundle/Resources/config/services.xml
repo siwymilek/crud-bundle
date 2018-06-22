@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="core.crud_bundle.handler.grid" class="Siwymilek\CrudBundle\Handler\GridHandler">
+            <argument></argument>
+            <argument type="service" id="core.crud_bundle.handler.resource_handler"></argument>
+        </service>
+
+        <service id="core.crud_bundle.routing.routes_extractor" class="Siwymilek\CrudBundle\Routing\RoutesExtractor">
+            <argument type="service" id="core.crud_bundle.handler.grid"></argument>
+        </service>
+
+        <service id="core.crud_bundle.routing.crud_loader" class="Siwymilek\CrudBundle\Routing\CrudLoader">
+            <argument type="service" id="core.crud_bundle.handler.grid"></argument>
+            <argument type="service" id="core.crud_bundle.routing.routes_extractor"></argument>
+            <tag name="routing.loader"/>
+        </service>
+
+        <service id="core.crud_bundle.handler.resource_handler" class="Siwymilek\CrudBundle\Handler\ResourceHandler">
+            <argument></argument>
+            <argument type="service" id="doctrine.orm.default_entity_manager"></argument>
+        </service>
+    </services>
+</container>
